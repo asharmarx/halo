@@ -97,54 +97,81 @@
   }
 
   .overlay {
-  position: absolute;
-  top: 80%;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 90%;
-  max-height: 100%;
-  opacity: 0;
-  transition: 0.6s ease;
-  background-color: #E5AE5B;
-}
-
-.overlay:hover{
-  opacity: 1;
-}
-
-.aboutText {
-  font-family: 'Black Han Sans', sans-serif;
-  font-weight: lighter;
-  color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-}
-
-.aboutText > h1 {
-  font-size: 3.8em;
-}
-
-.aboutText > p {
-  font-size: 1.5em;
-  padding: 1em;
-}
-
-#members{
-    height: auto;
-    background-color: #EBEBEB;
+    position: absolute;
+    top: 80%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 90%;
+    max-height: 100%;
+    opacity: 0;
+    transition: 0.6s ease;
+    background-color: #E5AE5B;
   }
-#members > p{
+
+  .overlay:hover{
+    opacity: 1;
+  }
+
+  .aboutText {
+    font-family: 'Black Han Sans', sans-serif;
+    font-weight: lighter;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+
+  .aboutText > h1 {
+    font-size: 3.8em;
+  }
+
+  .aboutText > p {
+    font-size: 1.5em;
+    padding: 1em;
+  }
+
+  #members{
+    text-align: center;
+    height: auto;
+    background-color: #5B92E5;
+  }
+  #members > p{
     margin-top: 2%;
     text-align: center;
     font-size: 2.5em;
-    color: black;
-    font-family: Montserrat, sans-serif;
+    color: white;
+    font-family: 'Black Han Sans', sans-serif;
+  }
+  .row > p {
+    display: block;
+    margin-top: 5%;
+    color: white;
+  }
+
+  #announce{
+    background-color: #E5AE5B;
+    height: 80%;
+    width: 100%;
+    padding: 0;
+    color: white;
+    font-family: 'Black Han Sans', sans-serif;
+  }
+  #announce > h1{
+    margin-top: 1%;
+    margin-left: 1em;
+    font-size: 3.5em;
+  }
+
+  #announce > p {
+    margin-left: 1em;
+    margin-top: 3%;
+    line-height: 1.5em;
+    font-size: 1.5em;
   }
   </style>
 
@@ -161,6 +188,8 @@
           <span class = "icon-bar"></span>
           <span class = "icon-bar"></span>
           <span class = "icon-bar"></span>
+          <span class = "icon-bar"></span>
+
 
         </button>
         <a class = "navbar-brand" href = "#home"> HC </a>
@@ -171,7 +200,9 @@
         <ul class = "nav navbar-nav navbar-right">
           <li><a href = #home> HOME </a></li>
           <li><a href = #about> ABOUT </a></li>
-          <li><a href = #member> MEMBERS </a></li>
+          <li><a href = #members> MEMBERS </a></li>
+          <li><a href = #announce> ANNOUNCEMENTS </a></li>
+
         </ul>
       </div> <!-- End Collapse -->
 
@@ -202,7 +233,7 @@
   </div>
 
   <div id = "members" class="container-fluid">
-    <p><strong>2018 Board Memebers</strong></p>
+    <p><strong>2018 BOARD MEMBERS</strong></p>
     <?php
     $boardPhotos = glob("images/boardMembers/*.{jpeg,jpg,JPEG,JPG}", GLOB_BRACE);
     $boardPhotoCount = count($boardPhotos);
@@ -216,18 +247,16 @@
         for ($i=0; $i < floor($boardPhotoCount/3); $i++) {
           ?>
           <div class="col-sm-4">
-              <img src=<?php echo "$boardPhotos[$indexCount]"; ?> class="img-circle person" alt="Random Name" width="255" height="255">
-            <p class="text-center"><strong><?php echo "$boardNames[$indexCount]"; ?></strong></p>
+            <img src=<?php echo "$boardPhotos[$indexCount]"; ?> class="img-circle person" alt="Random Name" width="255" height="255">
+            <p class="text-center" style="color:white; margin-top:2%;"><strong><?php echo "$boardNames[$indexCount]"; ?></strong></p>
 
             <?php
             $data = fgetcsv($handle, 1000, ",");
+            $num = count($data);
+            for ($c=0; $c < $num; $c++) {
+              echo "<p style=\"color:white; margin-top:2%;\">". $data[$c] . "</p>\n";
+            }
             ?>
-              <?php
-              $num = count($data);
-              for ($c=0; $c < $num; $c++) {
-                echo "<p>". $data[$c] . "</p>\n";
-              }
-              ?>
           </div>
           <?php
           $indexCount += 1;
@@ -238,6 +267,19 @@
     }
     fclose($handle);
     ?>
+  </div>
+
+  <div id = "announce" class="container-fluid">
+      <h1 class='text-center'>ANNOUNCEMENTS</h1>
+      <p>
+        <?php
+        $announceFile = fopen("announcements.txt","r");
+        while(!feof($announceFile)) {
+          echo fgets($announceFile) . "<br>";
+        }
+        fclose($announceFile);
+        ?>
+      </p>
   </div>
 
 
