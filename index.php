@@ -86,14 +86,66 @@
   }
 
   #about{
-    background-image: url("images/IMG_7048");
+    background-image: url("images/IMG_7048.jpeg");
+    background-color: #E5AE5B;
+    background-repeat: no-repeat;
+    background-position: center;
     height: 90%;
     width: 100%;
     max-height: 90%;
     padding: 0;
   }
 
+  .overlay {
+  position: absolute;
+  top: 80%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90%;
+  max-height: 100%;
+  opacity: 0;
+  transition: 0.6s ease;
+  background-color: #E5AE5B;
+}
 
+.overlay:hover{
+  opacity: 1;
+}
+
+.aboutText {
+  font-family: 'Black Han Sans', sans-serif;
+  font-weight: lighter;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.aboutText > h1 {
+  font-size: 3.8em;
+}
+
+.aboutText > p {
+  font-size: 1.5em;
+  padding: 1em;
+}
+
+#members{
+    height: auto;
+    background-color: #EBEBEB;
+  }
+#members > p{
+    margin-top: 2%;
+    text-align: center;
+    font-size: 2.5em;
+    color: black;
+    font-family: Montserrat, sans-serif;
+  }
   </style>
 
 </head>
@@ -119,7 +171,7 @@
         <ul class = "nav navbar-nav navbar-right">
           <li><a href = #home> HOME </a></li>
           <li><a href = #about> ABOUT </a></li>
-          <li><a href = #contact> CONTACT </a></li>
+          <li><a href = #member> MEMBERS </a></li>
         </ul>
       </div> <!-- End Collapse -->
 
@@ -134,7 +186,58 @@
   </div>
 
   <div id="about" class="container-fluid">
+    <div class="overlay">
+      <div class="aboutText">
+        <h1>VISION</h1>
+        <p>HALO is a club dedicated to sending medicines to impoverished countries
+        </p>
 
+        <h1>MISSION</h1>
+        <p>Our HALO Club is a nonprofit organization that supplies infant formulas, hygiene products for women, and medical supplies for public health to poor countries. In many countries, there is still a lack of disinfectants and antibiotics to cure inflammation. Therefore, high school students and adult members of this club will fundraise money by using coin banks and will participate in health seminars and events in our community. Students in grades 8th-12th interested in HALO CLUB can work together and volunteers have the opportunity to receive Presidential and Leadership awards
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div id = "members" class="container-fluid">
+    <p><strong>2018 Board Memebers</strong></p>
+    <?php
+    $boardPhotos = glob("images/boardMembers/*.{jpeg,jpg,JPEG,JPG}", GLOB_BRACE);
+    $boardPhotoCount = count($boardPhotos);
+    $boardNames = array("Michelle Kim", "Josephine Kim", "David Ahn", "Ina Song", "Byunguk Isaiah Im", "Jin Young Kim", "Mikyung Lee", "Ji In Kwak", "Hyun Suk Bae");
+    $indexCount = 0;
+    $handle = fopen("boardDes.csv", "r");
+    for ($j=0; $j < 3; $j++) {
+      ?>
+      <div class="row">
+        <?php
+        for ($i=0; $i < floor($boardPhotoCount/3); $i++) {
+          ?>
+          <div class="col-sm-4">
+              <img src=<?php echo "$boardPhotos[$indexCount]"; ?> class="img-circle person" alt="Random Name" width="255" height="255">
+            <p class="text-center"><strong><?php echo "$boardNames[$indexCount]"; ?></strong></p>
+
+            <?php
+            $data = fgetcsv($handle, 1000, ",");
+            ?>
+              <?php
+              $num = count($data);
+              for ($c=0; $c < $num; $c++) {
+                echo "<p>". $data[$c] . "</p>\n";
+              }
+              ?>
+          </div>
+          <?php
+          $indexCount += 1;
+        }
+        ?>
+      </div><br><br><br>
+      <?php
+    }
+    fclose($handle);
+    ?>
   </div>
 
 
