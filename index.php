@@ -1,3 +1,5 @@
+<!--  Author: Aman Sharma -->
+<!--  asharmarx.github.io -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -244,9 +246,9 @@
       ?>
       <div class="row">
         <?php
-        for ($i=0; $i < floor($boardPhotoCount/3); $i++) {
+        for ($i=0; $i < floor($boardPhotoCount/2); $i++) {
           ?>
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <img src=<?php echo "$boardPhotos[$indexCount]"; ?> class="img-circle person" alt="Random Name" width="255" height="255">
             <p class="text-center" style="color:white; margin-top:2%;"><strong><?php echo "$boardNames[$indexCount]"; ?></strong></p>
 
@@ -260,6 +262,9 @@
           </div>
           <?php
           $indexCount += 1;
+          if ($indexCount >= $boardPhotoCount) {
+            break 2;
+          }
         }
         ?>
       </div><br><br><br>
@@ -284,4 +289,9 @@
 
 
 </body>
+
+
+
+
+
 </html>
