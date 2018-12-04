@@ -89,6 +89,7 @@
 
   #about{
     background-image: url("images/IMG_7048.jpeg");
+    background-size: contain;
     background-color: #E5AE5B;
     background-repeat: no-repeat;
     background-position: center;
