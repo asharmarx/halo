@@ -152,8 +152,10 @@
   #members{
     text-align: center;
     height: auto;
+    max-height: auto;
     background-color: #5B92E5;
   }
+
   #members > p{
     margin-top: 2%;
     text-align: center;
@@ -161,6 +163,7 @@
     color: white;
     font-family: 'Black Han Sans', sans-serif;
   }
+
   .row > p {
     display: block;
     margin-top: 5%;
@@ -168,13 +171,14 @@
   }
 
   #announce{
-    background-color: #E5AE5B;
-    height: 80%;
     width: 100%;
     padding: 0;
+    background-color: #E5AE5B;
+    height: 80%;
     color: white;
     font-family: 'Black Han Sans', sans-serif;
   }
+
   #announce > h1{
     margin-top: 1%;
     margin-left: 1em;
@@ -300,16 +304,18 @@
   </div>
 
   <div id = "announce" class="container-fluid">
-    <h1 class='text-center'>ANNOUNCEMENTS</h1>
-    <p>
-      <?php
-      $announceFile = fopen("announcements.txt","r");
-      while(!feof($announceFile)) {
-        echo fgets($announceFile) . "<br>";
-      }
-      fclose($announceFile);
-      ?>
-    </p>
+    <h1 class="text-center">ANNOUNCEMENTS</h1>
+    <div class="announceText">
+      <p>
+        <?php
+        $announceFile = fopen("announcements.txt","r");
+        while(!feof($announceFile)) {
+          echo fgets($announceFile) . "<br>";
+        }
+        fclose($announceFile);
+        ?>
+      </p>
+    </div>
   </div>
 
 
