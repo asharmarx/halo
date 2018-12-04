@@ -93,9 +93,9 @@
     background-color: #E5AE5B;
     background-repeat: no-repeat;
     background-position: center;
-    height: 90%;
+    height: 120%;
     width: 100%;
-    max-height: 90%;
+    max-height: 120%;
     padding: 0;
   }
 
@@ -105,8 +105,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 90%;
-    max-height: 100%;
+    height: 120%;
+    max-height: 120%;
     opacity: 0;
     transition: 0.6s ease;
     background-color: #E5AE5B;
@@ -136,6 +136,17 @@
   .aboutText > p {
     font-size: 1.5em;
     padding: 1em;
+  }
+
+  .contactInfo > .text-center {
+    padding: 0;
+    margin-bottom: -2.5%;
+    font-size: 1.2em;
+  }
+
+  .collapse > p{
+    margin: 2% 0 0 0;
+    font-size: 1.1em;
   }
 
   #members{
@@ -230,6 +241,19 @@
         <p>Our HALO Club is a nonprofit organization that supplies infant formulas, hygiene products for women, and medical supplies for public health to poor countries. In many countries, there is still a lack of disinfectants and antibiotics to cure inflammation. Therefore, high school students and adult members of this club will fundraise money by using coin banks and will participate in health seminars and events in our community. Students in grades 8th-12th interested in HALO CLUB can work together and volunteers have the opportunity to receive Presidential and Leadership awards
         </p>
 
+        <div class="contactInfo">
+          <h1>Contact</h1>
+          <p class="text-center"><strong>Byunguk Isaiah Im</strong></p><br>
+          <a href="#demo" data-toggle="collapse">
+            <img src="images/boardMembers/e.jpeg" class="img-circle person" alt="Random Name" width="113" height="113">
+          </a>
+          <div id="demo" class="collapse">
+            <p>Director</p>
+            <p>714-889-8432</p>
+          </div>
+
+        </div>
+
       </div>
 
     </div>
@@ -276,16 +300,16 @@
   </div>
 
   <div id = "announce" class="container-fluid">
-      <h1 class='text-center'>ANNOUNCEMENTS</h1>
-      <p>
-        <?php
-        $announceFile = fopen("announcements.txt","r");
-        while(!feof($announceFile)) {
-          echo fgets($announceFile) . "<br>";
-        }
-        fclose($announceFile);
-        ?>
-      </p>
+    <h1 class='text-center'>ANNOUNCEMENTS</h1>
+    <p>
+      <?php
+      $announceFile = fopen("announcements.txt","r");
+      while(!feof($announceFile)) {
+        echo fgets($announceFile) . "<br>";
+      }
+      fclose($announceFile);
+      ?>
+    </p>
   </div>
 
 
