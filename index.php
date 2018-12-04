@@ -245,7 +245,7 @@
           <h1>Contact</h1>
           <p class="text-center"><strong>Byunguk Isaiah Im</strong></p><br>
           <a href="#demo" data-toggle="collapse">
-            <img src="images/boardMembers/e.jpeg" class="img-circle person" alt="Random Name" width="113" height="113">
+            <img src="images/contact/e.jpeg" class="img-circle person" alt="Random Name" width="113" height="113">
           </a>
           <div id="demo" class="collapse">
             <p>Director</p>
@@ -264,7 +264,7 @@
     <?php
     $boardPhotos = glob("images/boardMembers/*.{jpeg,jpg,JPEG,JPG}", GLOB_BRACE);
     $boardPhotoCount = count($boardPhotos);
-    $boardNames = array("Michelle Kim", "Josephine Kim", "David Ahn", "Ina Song", "Byunguk Isaiah Im", "Jin Young Kim", "Mikyung Lee", "Ji In Kwak", "Hyun Suk Bae");
+    $boardNames = array("Michelle Kim", "Josephine Kim", "David Ahn", "Ina Song", "Jin Young Kim", "Mikyung Lee", "Ji In Kwak", "Hyun Suk Bae");
     $indexCount = 0;
     $handle = fopen("boardDes.csv", "r");
     for ($j=0; $j < 3; $j++) {
