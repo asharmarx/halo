@@ -93,9 +93,9 @@
     background-color: #E5AE5B;
     background-repeat: no-repeat;
     background-position: center;
-    height: 120%;
+    height: 115%;
     width: 100%;
-    max-height: 120%;
+    max-height: 115%;
     padding: 0;
   }
 
@@ -105,8 +105,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 120%;
-    max-height: 120%;
+    height: 115%;
+    max-height: 115%;
     opacity: 0;
     transition: 0.6s ease;
     background-color: #E5AE5B;
@@ -130,12 +130,12 @@
   }
 
   .aboutText > h1 {
-    font-size: 3.8em;
+    font-size: 2.5vw;
   }
 
   .aboutText > p {
-    font-size: 1.5em;
-    padding: 1em;
+    font-size: 1.2vw;
+    padding: 0.8vw;
   }
 
   .contactInfo > .text-center {
@@ -146,7 +146,7 @@
 
   .collapse > p{
     margin: 2% 0 0 0;
-    font-size: 1.1em;
+    font-size: 2.0vw;
   }
 
   #members{
@@ -170,10 +170,96 @@
     color: white;
   }
 
+  #photos{
+    background-color: #E5AE5B;
+    width: 100%;
+    padding: 0;
+  }
+
+  .mySlides {
+    display: none;
+    opacity: 1 !important;
+  }
+
+  .mySlides>img {
+    vertical-align: middle;
+    width: 100%;
+  }
+
+  .slideshow {
+    max-height: auto;
+    max-width: 70%;
+    position: relative;
+    margin: auto;
+  }
+
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+  }
+
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 1.5em;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+
+  .prev:active, .next:active, .dot:hover {
+    background-color: #717171;
+  }
+
+  /* Fading animation */
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+
+  @-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+
+  /* On smaller screens, decrease text size */
+  @media only screen and (max-width: 300px) {
+    .prev, .next,.text {font-size: 11px}
+  }
+
+
   #announce{
     width: 100%;
     padding: 0;
-    background-color: #E5AE5B;
+    background-color: #5B92E5;
     height: 80%;
     color: white;
     font-family: 'Black Han Sans', sans-serif;
@@ -207,6 +293,7 @@
           <span class = "icon-bar"></span>
           <span class = "icon-bar"></span>
           <span class = "icon-bar"></span>
+          <span class = "icon-bar"></span>
 
 
         </button>
@@ -219,6 +306,7 @@
           <li><a href = #home> HOME </a></li>
           <li><a href = #about> ABOUT </a></li>
           <li><a href = #members> MEMBERS </a></li>
+          <li><a href = #photos> PHOTOS </a></li>
           <li><a href = #announce> ANNOUNCEMENTS </a></li>
 
         </ul>
@@ -249,7 +337,7 @@
           <h1>Contact</h1>
           <p class="text-center"><strong>Byunguk Isaiah Im</strong></p><br>
           <a href="#demo" data-toggle="collapse">
-            <img src="images/contact/e.jpeg" class="img-circle person" alt="Random Name" width="113" height="113">
+            <img src="images/contact/e.jpeg" class="img-circle person" alt="Random Name" width="226" height="226">
           </a>
           <div id="demo" class="collapse">
             <p>Director</p>
@@ -303,20 +391,68 @@
     ?>
   </div>
 
-  <div id = "announce" class="container-fluid">
-    <h1 class="text-center">ANNOUNCEMENTS</h1>
-    <div class="announceText">
-      <p>
-        <?php
-        $announceFile = fopen("announcements.txt","r");
-        while(!feof($announceFile)) {
-          echo fgets($announceFile) . "<br>";
-        }
-        fclose($announceFile);
+  <div id = "photos" class="container">
+    <div class="slideshow">
+      <?php
+      $imgFiles = glob("images/*.{jpg,jpeg,JPEG,JPG}", GLOB_BRACE);
+      $numFiles = count($imgFiles);
+      for($i = 0; $i < $numFiles; $i++):
+        $currentImage = $imgFiles[$i];
+        $currentimgNumber = $i + 1;
         ?>
-      </p>
+        <div class="mySlides fade">
+          <div class="numbertext"><?php echo "$currentimgNumber/$numFiles";?>
+          </div>
+          <img src= <?php echo "\"$currentImage\"";?> alt="Random Name" style="width:100%">
+        </div>
+        <?php
+      endfor; ?>
+
+      <!-- Next and previous buttons -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
+  </div> <!--  end slideshow cointainer -->
+
+  <script type="text/javascript">
+
+  var slideIndex = 1;
+  showSlides(slideIndex);
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[slideIndex-1].style.display = "block";
+  }
+</script>
+
+<div id = "announce" class="container-fluid">
+  <h1 class="text-center">ANNOUNCEMENTS</h1>
+  <div class="announceText">
+    <p>
+      <?php
+      $announceFile = fopen("announcements.txt","r");
+      while(!feof($announceFile)) {
+        echo fgets($announceFile) . "<br>";
+      }
+      fclose($announceFile);
+      ?>
+    </p>
   </div>
+</div>
 
 
 </body>
